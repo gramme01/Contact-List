@@ -5,10 +5,10 @@
 var app = {
 	contact: [{
 		"name": "Emmanuel Ayoolamilekan",
-		"number": "07032568182"
+		"number": "09056345232"
 	}, {
 		"name": "Bolanle",
-		"number": "08162236680"
+		"number": "07089660117"
 	}],
 
 	init: function () {
