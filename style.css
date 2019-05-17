@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #3494E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'PT Sans', sans-serif;
+}
+
+:root {
+    --bg-color: #eeebd0;
+    --main-color: #3494E6;
+    --text-color: #EC6EAD;
+    --sec-bg-color: #e4e4e4;
+}
+
+#contactModule {
+    width: 600px;
+    background: white;
+    margin: 50px auto;
+    box-shadow: 1px 1px 13px -2px rgba(0,0,0,0.5);
+}
+
+.head {
+    background: var(--text-color);
+}
+
+.head i {
+    display: block;
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+h1 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+	margin-right: -2px;
+    font-size: 2rem;
+    padding: 30px 10px 30px;
+    text-align: center;
+	color: white;
+}
+
+form {
+    background: var(--sec-bg-color);
+    padding: 10px 20px 0;
+}
+
+.formHolder {
+    float: left;
+	width: 85%;
+}
+
+input {
+    display: block;
+    border: 1px solid white;
+    line-height: 24px;
+    font-size: 16px;
+	padding: 5px 10px;
+	box-sizing: border-box;
+    color: var(--text-color);
+    background: none;
+	width: 100%;
+    margin-bottom: 10px;
+    transition: all 500ms; 
+}
+
+
+input::placeholder {
+    color: white;
+}
+
+input:focus {
+    background: var(--text-color);
+    color: white;
+    outline: none;
+}
+
+input:hover {
+    border-color: var(--text-color);
+}
+
+button {
+    float: right;
+    width: 10%;
+    line-height: 80px;
+    font-size: 20px;
+    border: 1px solid white;
+    color: var(--text-color);
+    background: inherit;
+    transition: color 300ms, background 300ms;
+}
+
+button:hover, button:active {
+    color: white;
+    background: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+
+
+.clearfix::after {
+    display: table;
+    content: "";
+    clear: both;
+}
+
+.wrapper:nth-child(2n) {
+	background: var(--sec-bg-color);
+}
+
+.wrapper .delete {
+    display: block;
+	background: var(--main-color);
+    font-size: 16px;
+    line-height: 30px;
+    height: 0;
+    opacity: 0;
+    text-align: center;
+    color: white;
+    transition: all 890ms;
+}
+
+.details:hover > .delete {
+    height: 30px;
+    opacity: 1;
+}
+
+.wrapper div div:first-of-type {
+    padding: 5px 20px 0;
+}
+
+.wrapper div div:last-of-type {
+    padding: 0 20px 5px;
+}
+
+.wrapper div div i {
+    display: inline-block;
+    width: 30px;
+    margin-right: 20px;
+    text-align: center;
+    opacity: .2;
+}
+
+.wrapper div div i.fa-phone-square{
+    opacity: 0;
+}
+
+.wrapper .nameCard {
+    font-size: 24px;
+}
+
+
+
