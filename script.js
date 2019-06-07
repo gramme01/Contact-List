@@ -2,8 +2,8 @@
 /*eslint-env browser*/
 /*jshint esversion: 6*/
 
-var app = {
-	contact: [
+var app = (function() {
+	let contact = [
 		{
 			name: "Emmanuel Ayoolamilekan",
 			number: "09056345232"
@@ -12,81 +12,62 @@ var app = {
 			name: "Bolanle",
 			number: "07089660117"
 		}
-	],
+	];
 
-	init: function() {
-		this.cacheDom();
-		this.bindEvents();
-		this.render();
-	},
+	//cache dom
+	let $el = $("#contactModule"),
+		$input = $el.find("input"),
+		$nameForm = $el.find("#nameForm"),
+		$numberForm = $el.find("#numberForm"),
+		$button = $el.find("button"),
+		$container = $el.find("#container"),
+		$template = $el.find("#contactTemplate").html();
 
-	cacheDom: function() {
-		this.$el = $("#contactModule");
-		this.$input = this.$el.find("input");
-		this.$nameForm = this.$el.find("#nameForm");
-		this.$numberForm = this.$el.find("#numberForm");
-		this.$button = this.$el.find("button");
-		this.$container = this.$el.find("#container");
-		this.$template = this.$el.find("#contactTemplate").html();
-	},
+	//bind events
+	$input.on("keypress", preSave);
+	$button.on("click", preSave);
+	$container.on("click", "span.delete", deletePerson);
 
-	bindEvents: function() {
-		this.$input.on("keypress", this.preSave.bind(this));
-		this.$button.on("click", this.preSave.bind(this));
-		this.$container.on(
-			"click",
-			"span.delete",
-			this.deletePerson.bind(this)
-		);
-	},
+	//render
+	function render() {
+		var data = { card: contact };
+		$container.html(Mustache.render($template, data));
+	}
 
-	render: function() {
-		var data = { card: this.contact };
-		this.$container.html(Mustache.render(this.$template, data));
-	},
+	//init
+	render();
 
-	preSave: function(event) {
-		if (this.$nameForm.val() != "" && this.$numberForm.val() != "") {
-			if (event.which == 13 || event.type == "click") this.addPerson();
+	//functionalities
+	function preSave(event) {
+		if ($nameForm.val() != "" && $numberForm.val() != "") {
+			if (event.which == 13 || event.type == "click") addPerson();
 		}
-	},
+	}
 
-	addPerson: function() {
-		let nameInp = this.$nameForm.val(),
-			numberInp = parseInt(this.$numberForm.val());
-		console.log(typeof numberInp);
+	function addPerson() {
+		let nameInp = $nameForm.val(),
+			numberInp = parseInt($numberForm.val());
 
 		if (isNaN(numberInp)) {
 			alert("Enter a valid phone number");
-			this.$input.val("");
+			$input.val("");
 		} else {
 			let entry = { name: nameInp, number: numberInp };
-			this.contact.push(entry);
-			this.render();
+			contact.push(entry);
+			render();
+			$input.val("");
 		}
-	},
-
-	deletePerson: function(event) {
-		var $remove = $(event.target).closest("div.wrapper"),
-			i = this.$container.find(".wrapper").index($remove);
-		this.contact.splice(i, 1);
-		this.render();
 	}
-};
 
-app.init();
+	function deletePerson(event) {
+		var $remove = $(event.target).closest("div.wrapper"),
+			i = $container.find(".wrapper").index($remove);
+		contact.splice(i, 1);
+		render();
+	}
 
-// var contact = [{
-// 	"name": "Emmanuel Ayoolamilekan",
-// 	"number": "07032568182"
-// }, {
-// 	"name": "Bolanle",
-// 	"number": "08162236680"
-// }];
-
-// var data = {
-// 	card: contact
-// };
-// var templateContent = $("#contactTemplate").html();
-// var result = Mustache.render(templateContent, data);
-// $("#container").html(result);
+	// return {
+	// 	addPerson: addPerson,
+	// 	deletePerson: deletePerson
+	// };
+})();
